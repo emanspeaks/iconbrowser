@@ -37,7 +37,7 @@
 				"args": [
 					"${workspaceFolder}/.iconbrowser_config.jsonc"
 				],
-				"cwd": "${workspaceFolder:pyapp}"//,
+				"cwd": "${workspaceFolder}"//,
 				// "guiEventLoop": "qt"
 				// "stopOnEntry": true
 			},
