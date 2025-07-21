@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyapp"
+name = "iconbrowser"
 # version = "0.1.0"
 dynamic = ["version"]
 description = "Library of common functions for Python applications"
@@ -15,10 +15,7 @@ maintainers = [
   {name = "Randy Eckman", email = "emanspeaks@gmail.com"},
 ]
 dependencies = [
-  "pywin32",
-  "tqdm",
-  "pyside2",
-  "types-pyside2",
+  "pyapp",
 ]
 
 [project.optional-dependencies]
@@ -26,22 +23,22 @@ qdarkstyle = [
   "qdarkstyle",
 ]
 
-[tool.hatch.build]
-include = [
-  "pyapp/gui/icons/assets/**/*.ttf",
-  "pyapp/gui/icons/assets/**/*.json",
-  "pyapp/gui/icons/assets/**/LICENSE*",
-  "pyapp/gui/styles/assets/*.qrc",
-  "pyapp/gui/styles/assets/*.svg",
-  "pyapp/gui/styles/assets/*.qss",
-  "pyapp/gui/styles/assets/*.json",
-]
+# [tool.hatch.build]
+# include = [
+#   "pyapp/gui/icons/assets/**/*.ttf",
+#   "pyapp/gui/icons/assets/**/*.json",
+#   "pyapp/gui/icons/assets/**/LICENSE*",
+#   "pyapp/gui/styles/assets/*.qrc",
+#   "pyapp/gui/styles/assets/*.svg",
+#   "pyapp/gui/styles/assets/*.qss",
+#   "pyapp/gui/styles/assets/*.json",
+# ]
 
 [tool.hatch.version]
-path = "pyapp/version.py"
+path = "iconbrowser/version.py"
 
 [project.urls]
-Homepage = "https://github.com/emanspeaks/pyapp"
+Homepage = "https://github.com/emanspeaks/iconbrowser"
 
 [tool.coverage.report]
 # ignore_errors = true

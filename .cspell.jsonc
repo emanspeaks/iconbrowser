@@ -11,7 +11,7 @@
     ],
     "dictionaryDefinitions": [
         {
-            "name": "pyapp",
+            "name": "iconbrowser",
             "path": ".vscode/ltex.dictionary.en-US.txt",
             "addWords": true
         }
@@ -20,7 +20,7 @@
         "bash",
         "win32",
         "scientific-terms-us",
-        "pyapp"
+        "iconbrowser"
     ],
     "allowCompoundWords": true,
     "ignoreWords": [

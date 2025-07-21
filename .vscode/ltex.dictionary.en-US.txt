@@ -120,3 +120,5 @@ VSCode
 vscode-codicons
 waivable
 ymdhms
+spyder-ide
+qtawesome

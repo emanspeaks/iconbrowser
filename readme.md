@@ -1,9 +1,3 @@
-# PyApp
+# PyApp Icon Browser
 
-Library of common functions for Python applications
-
-## Licenses
-
-### Icons
-
-This repo uses icons taken from other open source icon libraries.  Links to their licensing info are maintained alongside the URLs for the icon fonts in [`pyapp/gui/icons/qiconfont/sources.py`](pyapp/gui/icons/qiconfont/sources.py), where the paths to the license files are with respect to the repo root at the given URL.
+Refactor of icon browser from [spyder-ide/qtawesome](https://github.com/spyder-ide/qtawesome)
