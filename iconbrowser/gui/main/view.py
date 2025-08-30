@@ -9,7 +9,7 @@ from pyapp.gui.widgets.viewbase import GuiViewBaseFrame
 from pyapp.gui.loadstatus import load_status_step
 from pyapp.gui.utils import (
     create_action, create_toolbar_expanding_spacer,
-    set_widget_sizepolicy_expanding, show_toolbtn_icon_and_text
+    set_widget_sizepolicy_h_expanding, show_toolbtn_icon_and_text
 )
 
 from ...app import IconBrowserApp
@@ -78,7 +78,7 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         lineEditFilter.setToolTip("Filter icons by name")
         lineEditFilter.setMinimumWidth(200)
         # lineEditFilter.setMaximumWidth(400)
-        set_widget_sizepolicy_expanding(lineEditFilter)
+        set_widget_sizepolicy_h_expanding(lineEditFilter)
         lineEditFilter.setAlignment(Qt.AlignLeft)
         lineEditFilter.textChanged.connect(pres.filter_text_changed)
         lineEditFilter.returnPressed.connect(pres.triggerImmediateUpdate)  # noqa: E501
