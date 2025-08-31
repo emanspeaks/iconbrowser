@@ -1,5 +1,6 @@
 from pyapp.gui.qt import QTimer, QSortFilterProxyModel, Qt
 from pyapp.gui.icons.iconfont.sources import THIRDPARTY_FONTSPEC
+from pyapp.gui.icons.utils import legalize_iconname
 from pyapp.gui.window import GuiWindow
 from pyapp.gui.dialogs.config import ConfigTreeDialog
 
@@ -116,11 +117,13 @@ class MainWindow(GuiWindow[MainWindowView]):
         fontmod = spec.module_qualname()
         fontclass = spec.classname
         shortname = spec.shortname
+        legalname = legalize_iconname(iconname)
 
         code = ("from pyapp.gui.icons.iconfont import IconSpec\n"
                 f"from {fontmod} import {fontclass}\n"
                 f"from {fontmod} import names as {shortname}_names  # noqa: E501\n"
-                f"{shortname}_{iconname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph={shortname}_names.{iconname})  # noqa: E501\n")
+                # f"{shortname}_{legalname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph_name={iconname!r})  # noqa: E501\n")
+                f"{shortname}_{legalname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph={shortname}_names.{legalname})  # noqa: E501\n")
 
         clipboard = self.qt_app.clipboard()
         clipboard.setText(code)
