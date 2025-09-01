@@ -1,4 +1,6 @@
-from pyapp.gui.qt import QTimer, QSortFilterProxyModel, Qt
+from pyapp.gui.qt import (
+    QTimer, QSortFilterProxyModel, Qt, QItemSelection, QModelIndex,
+)
 from pyapp.gui.callback import qt_callback
 from pyapp.gui.icons.iconfont.sources import THIRDPARTY_FONTSPEC
 from pyapp.gui.icons.utils import legalize_iconname
@@ -90,7 +92,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         self.proxyModel.setFilterRegularExpression(reString)
 
     @log_func_call
-    def doubleClickIcon(self):
+    def doubleClickIcon(self, index: QModelIndex = None):
         self.updateNameField()
         self.copyIconPyAppCode()
 
@@ -130,10 +132,8 @@ class MainWindow(GuiWindow[MainWindowView]):
         clipboard.setText(code)
 
     @log_func_call
-    def updateNameField(self):
-        """
-        Update field to the name of the currently selected icon.
-        """
+    def updateNameField(self, selected: QItemSelection = None,
+                        deselected: QItemSelection = None):
         win = self.gui_view
         indexes = win.listView.qtobj.selectedIndexes()
         if not indexes:
