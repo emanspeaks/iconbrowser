@@ -1,4 +1,5 @@
 from pyapp.gui.qt import QTimer, QSortFilterProxyModel, Qt
+from pyapp.gui.callback import qt_callback
 from pyapp.gui.icons.iconfont.sources import THIRDPARTY_FONTSPEC
 from pyapp.gui.icons.utils import legalize_iconname
 from pyapp.gui.window import GuiWindow
@@ -41,7 +42,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         filterTimer = QTimer(self.gui_view.qtobj)
         filterTimer.setSingleShot(True)
         filterTimer.setInterval(AUTO_SEARCH_TIMEOUT)
-        filterTimer.timeout.connect(self.updateFilter)
+        filterTimer.timeout.connect(qt_callback(self.updateFilter))
         self.filterTimer = filterTimer
 
     @log_func_call
