@@ -4,6 +4,7 @@ from pyrandyos.gui.qt import (
     QToolBar, QComboBox, QListView, QLineEdit, QVBoxLayout,
     QShortcut, Qt, QKeySequence,
 )
+from pyrandyos.gui.callback import qt_callback
 from pyrandyos.gui.window import GuiWindowView
 from pyrandyos.gui.widgets.viewbase import GuiViewBaseFrame
 from pyrandyos.gui.loadstatus import load_status_step
@@ -69,7 +70,9 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         comboFont.setMaximumWidth(125)
         comboFont.addItems([ALL_COLLECTIONS]
                            + sorted(pres.get_font_names()))
-        comboFont.currentIndexChanged.connect(pres.triggerImmediateUpdate)
+        comboFont.currentIndexChanged.connect(
+            qt_callback(pres.triggerImmediateUpdate)
+        )
         comboFont = comboFont
         self.comboFont = comboFont
         toolbar.addWidget(comboFont)
@@ -80,8 +83,12 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         # lineEditFilter.setMaximumWidth(400)
         set_widget_sizepolicy_h_expanding(lineEditFilter)
         lineEditFilter.setAlignment(Qt.AlignLeft)
-        lineEditFilter.textChanged.connect(pres.filter_text_changed)
-        lineEditFilter.returnPressed.connect(pres.triggerImmediateUpdate)  # noqa: E501
+        lineEditFilter.textChanged.connect(
+            qt_callback(pres.filter_text_changed)
+        )
+        lineEditFilter.returnPressed.connect(
+            qt_callback(pres.triggerImmediateUpdate)
+        )
         lineEditFilter.setClearButtonEnabled(True)
         lineEditFilter.setPlaceholderText("Search icons")
         self.lineEditFilter = lineEditFilter
@@ -154,7 +161,9 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         comboColumns.setCurrentIndex(
             comboColumns.findData(DEFAULT_VIEW_COLUMNS)
         )
-        comboColumns.currentTextChanged.connect(pres.updateColumns)
+        comboColumns.currentTextChanged.connect(
+            qt_callback(pres.updateColumns)
+        )
         comboColumns.setMinimumWidth(75)
         self.comboColumns = comboColumns
         toolbar.addWidget(comboColumns)
@@ -173,7 +182,7 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
                 theme_idx = i
 
         comboStyle.setCurrentIndex(theme_idx if theme_idx is not None else 0)
-        comboStyle.currentTextChanged.connect(pres.updateStyle)
+        comboStyle.currentTextChanged.connect(qt_callback(pres.updateStyle))
         comboStyle.setMinimumWidth(100)
         self.comboStyle = comboStyle
         toolbar.addWidget(comboStyle)
@@ -196,9 +205,9 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         lvwidget.setViewMode(QListView.IconMode)
         lvwidget.setModel(pres.proxyModel)
         lvwidget.setContextMenuPolicy(Qt.CustomContextMenu)
-        lvwidget.doubleClicked.connect(pres.doubleClickIcon)
+        lvwidget.doubleClicked.connect(qt_callback(pres.doubleClickIcon))
         selmodel = lvwidget.selectionModel()
-        selmodel.selectionChanged.connect(pres.updateNameField)
+        selmodel.selectionChanged.connect(qt_callback(pres.updateNameField))
         self.layout.addWidget(lvwidget)
 
     @log_func_call

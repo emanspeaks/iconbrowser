@@ -1,5 +1,9 @@
-from pyrandyos.gui.qt import QTimer, QSortFilterProxyModel, Qt
+from pyrandyos.gui.qt import (
+    QTimer, QSortFilterProxyModel, Qt, QItemSelection, QModelIndex,
+)
+from pyrandyos.gui.callback import qt_callback
 from pyrandyos.gui.icons.iconfont.sources import THIRDPARTY_FONTSPEC
+from pyrandyos.gui.icons.utils import legalize_iconname
 from pyrandyos.gui.window import GuiWindow
 from pyrandyos.gui.dialogs.config import ConfigTreeDialog
 
@@ -40,7 +44,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         filterTimer = QTimer(self.gui_view.qtobj)
         filterTimer.setSingleShot(True)
         filterTimer.setInterval(AUTO_SEARCH_TIMEOUT)
-        filterTimer.timeout.connect(self.updateFilter)
+        filterTimer.timeout.connect(qt_callback(self.updateFilter))
         self.filterTimer = filterTimer
 
     @log_func_call
@@ -88,7 +92,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         self.proxyModel.setFilterRegularExpression(reString)
 
     @log_func_call
-    def doubleClickIcon(self):
+    def doubleClickIcon(self, index: QModelIndex = None):
         self.updateNameField()
         self.copyIconPyRandyOSCode()
 
@@ -116,20 +120,20 @@ class MainWindow(GuiWindow[MainWindowView]):
         fontmod = spec.module_qualname()
         fontclass = spec.classname
         shortname = spec.shortname
+        legalname = legalize_iconname(iconname)
 
         code = ("from pyrandyos.gui.icons.iconfont import IconSpec\n"
                 f"from {fontmod} import {fontclass}\n"
                 f"from {fontmod} import names as {shortname}_names  # noqa: E501\n"
-                f"{shortname}_{iconname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph={shortname}_names.{iconname})  # noqa: E501\n")
+                # f"{shortname}_{legalname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph_name={iconname!r})  # noqa: E501\n")
+                f"{shortname}_{legalname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph={shortname}_names.{legalname})  # noqa: E501\n")
 
         clipboard = self.qt_app.clipboard()
         clipboard.setText(code)
 
     @log_func_call
-    def updateNameField(self):
-        """
-        Update field to the name of the currently selected icon.
-        """
+    def updateNameField(self, selected: QItemSelection = None,
+                        deselected: QItemSelection = None):
         win = self.gui_view
         indexes = win.listView.qtobj.selectedIndexes()
         if not indexes:
