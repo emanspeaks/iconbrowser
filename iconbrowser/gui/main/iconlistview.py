@@ -1,5 +1,5 @@
-from pyapp.gui.qt import Qt, QSize, QListView, QResizeEvent
-from pyapp.gui.widgets import QtWidgetWrapper, GuiWidgetParentType
+from pyrandyos.gui.qt import Qt, QSize, QListView, QResizeEvent
+from pyrandyos.gui.widgets import QtWidgetWrapper, GuiWidgetParentType
 
 from ...logging import log_func_call, DEBUGLOW2
 

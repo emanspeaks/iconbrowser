@@ -1,4 +1,4 @@
-from pyapp.gui.icons.iconfont.icon import IconSpec
+from pyrandyos.gui.icons.iconfont.icon import IconSpec
 
 
 def iconstring_to_specname_iconname(iconstring: str) -> tuple[str, str]:

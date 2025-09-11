@@ -1,13 +1,13 @@
 from pathlib import Path
 
-from pyapp import PyApp
+from pyrandyos import PyRandyOSApp
 
 from .logging import log_func_call
 
 HERE = Path(__file__).parent
 
 
-class IconBrowserApp(PyApp):
+class IconBrowserApp(PyRandyOSApp):
     APP_NAME: str = 'IconBrowser'
     APP_LOG_PREFIX = 'IconBrowser'
     APP_ASSETS_DIR = HERE/"assets"

@@ -1,5 +1,5 @@
-from pyapp.gui.qt import QPixmap, Qt
-from pyapp.gui.splash import GuiSplashScreen
+from pyrandyos.gui.qt import QPixmap, Qt
+from pyrandyos.gui.splash import GuiSplashScreen
 
 from ..app import IconBrowserApp
 

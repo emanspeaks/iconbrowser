@@ -1,4 +1,4 @@
-from pyapp.gui.qt import Qt, QStringListModel
+from pyrandyos.gui.qt import Qt, QStringListModel
 from ..utils import iconstring_to_iconspec
 
 

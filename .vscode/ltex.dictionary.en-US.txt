@@ -65,6 +65,7 @@ PYAPPDIR
 pycache
 pyfile
 pyqt
+pyrandyos
 pyrcc
 pyscript
 pyside
@@ -80,6 +81,7 @@ qrcfile
 qresource
 qsplitter
 qtapp
+qtawesome
 QtAwesome
 qtbasewidget
 qtobj
@@ -97,6 +99,7 @@ shsplit
 sigparams
 sinfo
 Spyder
+spyder-ide
 STARTBRAK
 str
 tgtdir
@@ -120,5 +123,5 @@ VSCode
 vscode-codicons
 waivable
 ymdhms
-spyder-ide
-qtawesome
+jloads
+tmpmodname

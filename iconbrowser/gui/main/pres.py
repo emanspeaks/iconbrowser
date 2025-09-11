@@ -1,7 +1,7 @@
-from pyapp.gui.qt import QTimer, QSortFilterProxyModel, Qt
-from pyapp.gui.icons.iconfont.sources import THIRDPARTY_FONTSPEC
-from pyapp.gui.window import GuiWindow
-from pyapp.gui.dialogs.config import ConfigTreeDialog
+from pyrandyos.gui.qt import QTimer, QSortFilterProxyModel, Qt
+from pyrandyos.gui.icons.iconfont.sources import THIRDPARTY_FONTSPEC
+from pyrandyos.gui.window import GuiWindow
+from pyrandyos.gui.dialogs.config import ConfigTreeDialog
 
 from ...version import __version__
 from ...logging import log_func_call, DEBUGLOW2
@@ -90,7 +90,7 @@ class MainWindow(GuiWindow[MainWindowView]):
     @log_func_call
     def doubleClickIcon(self):
         self.updateNameField()
-        self.copyIconPyAppCode()
+        self.copyIconPyRandyOSCode()
 
     @log_func_call
     def copyIconText(self):
@@ -105,7 +105,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         clipboard.setText(indexes[0].data())
 
     @log_func_call
-    def copyIconPyAppCode(self):
+    def copyIconPyRandyOSCode(self):
         indexes = self.gui_view.listView.qtobj.selectedIndexes()
         if not indexes:
             return
@@ -117,7 +117,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         fontclass = spec.classname
         shortname = spec.shortname
 
-        code = ("from pyapp.gui.icons.iconfont import IconSpec\n"
+        code = ("from pyrandyos.gui.icons.iconfont import IconSpec\n"
                 f"from {fontmod} import {fontclass}\n"
                 f"from {fontmod} import names as {shortname}_names  # noqa: E501\n"
                 f"{shortname}_{iconname}_ispec = IconSpec.generate_iconspec({fontclass}, glyph={shortname}_names.{iconname})  # noqa: E501\n")
@@ -135,12 +135,12 @@ class MainWindow(GuiWindow[MainWindowView]):
         if not indexes:
             win.nameField.setText("")
             win.copyButton.setDisabled(True)
-            win.copyPyAppButton.setDisabled(True)
+            win.copyPyRandyOSButton.setDisabled(True)
             return
 
         win.nameField.setText(indexes[0].data())
         win.copyButton.setDisabled(False)
-        win.copyPyAppButton.setDisabled(False)
+        win.copyPyRandyOSButton.setDisabled(False)
 
     @log_func_call(DEBUGLOW2, trace_only=True)
     def triggerDelayedUpdate(self):

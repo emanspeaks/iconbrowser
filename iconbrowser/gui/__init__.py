@@ -1,5 +1,5 @@
 from PySide2.QtGui import QIcon
-from pyapp.gui.gui_app import GuiApp
+from pyrandyos.gui.gui_app import GuiApp
 
 from ..logging import (
     log_func_call as _log_func_call,

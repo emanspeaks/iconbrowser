@@ -1,15 +1,15 @@
 from typing import TYPE_CHECKING
 
-from pyapp.gui.qt import (
+from pyrandyos.gui.qt import (
     QToolBar, QComboBox, QListView, QLineEdit, QVBoxLayout,
     QShortcut, Qt, QKeySequence,
 )
-from pyapp.gui.window import GuiWindowView
-from pyapp.gui.widgets.viewbase import GuiViewBaseFrame
-from pyapp.gui.loadstatus import load_status_step
-from pyapp.gui.utils import (
+from pyrandyos.gui.window import GuiWindowView
+from pyrandyos.gui.widgets.viewbase import GuiViewBaseFrame
+from pyrandyos.gui.loadstatus import load_status_step
+from pyrandyos.gui.utils import (
     create_action, create_toolbar_expanding_spacer,
-    set_widget_sizepolicy_expanding, show_toolbtn_icon_and_text
+    set_widget_sizepolicy_h_expanding, show_toolbtn_icon_and_text
 )
 
 from ...app import IconBrowserApp
@@ -78,7 +78,7 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         lineEditFilter.setToolTip("Filter icons by name")
         lineEditFilter.setMinimumWidth(200)
         # lineEditFilter.setMaximumWidth(400)
-        set_widget_sizepolicy_expanding(lineEditFilter)
+        set_widget_sizepolicy_h_expanding(lineEditFilter)
         lineEditFilter.setAlignment(Qt.AlignLeft)
         lineEditFilter.textChanged.connect(pres.filter_text_changed)
         lineEditFilter.returnPressed.connect(pres.triggerImmediateUpdate)  # noqa: E501
@@ -121,14 +121,16 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         toolbar.addAction(copyButton)
         show_toolbtn_icon_and_text(toolbar.widgetForAction(copyButton))
 
-        copyPyAppButton = create_action(qtobj, "Copy PyApp Code",
-                                        CopyCodeIcon.icon(),
-                                        pres.copyIconPyAppCode, enabled=False,
-                                        tooltip="Copy selected icon "
-                                        "PyApp code to the clipboard")
-        self.copyPyAppButton = copyPyAppButton
-        toolbar.addAction(copyPyAppButton)
-        show_toolbtn_icon_and_text(toolbar.widgetForAction(copyPyAppButton))
+        copyPyRandyOSButton = create_action(qtobj, "Copy PyRandyOS Code",
+                                            CopyCodeIcon.icon(),
+                                            pres.copyIconPyRandyOSCode,
+                                            enabled=False,
+                                            tooltip="Copy selected icon "
+                                            "PyRandyOS code to the clipboard")
+        self.copyPyRandyOSButton = copyPyRandyOSButton
+        toolbar.addAction(copyPyRandyOSButton)
+        widget = toolbar.widgetForAction(copyPyRandyOSButton)
+        show_toolbtn_icon_and_text(widget)
 
         # @log_func_call
         # def create_view_toolbar(self):
