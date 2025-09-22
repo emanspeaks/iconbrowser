@@ -7,6 +7,7 @@ from pyrandyos.gui.qt import (
 from pyrandyos.gui.callback import qt_callback
 from pyrandyos.gui.window import GuiWindowView
 from pyrandyos.gui.widgets.viewbase import GuiViewBaseFrame
+from pyrandyos.gui.widgets.statusbar import LoggingStatusBarWidget
 from pyrandyos.gui.loadstatus import load_status_step
 from pyrandyos.gui.utils import (
     create_action, create_toolbar_expanding_spacer,
@@ -35,6 +36,8 @@ class MainWindowView(GuiWindowView['MainWindow', GuiViewBaseFrame]):
         layout = QVBoxLayout()
         self.layout = layout
         self.basewidget.qtobj.setLayout(layout)
+
+        self.status_bar = LoggingStatusBarWidget(self)
 
         self.create_toolbars()
         self.create_icon_list_view()

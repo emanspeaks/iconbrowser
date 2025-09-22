@@ -8,7 +8,7 @@ from pyrandyos.gui.window import GuiWindow
 from pyrandyos.gui.dialogs.config import ConfigTreeDialog
 
 from ...version import __version__
-from ...logging import log_func_call, DEBUGLOW2
+from ...logging import log_func_call, DEBUGLOW2, log_info
 from ...app import IconBrowserApp
 from ..constants import AUTO_SEARCH_TIMEOUT, ALL_COLLECTIONS
 from ..utils import iconstring_to_specname_iconname
@@ -106,7 +106,9 @@ class MainWindow(GuiWindow[MainWindowView]):
             return
 
         clipboard = self.qt_app.clipboard()
-        clipboard.setText(indexes[0].data())
+        name = indexes[0].data()
+        clipboard.setText(name)
+        log_info(f'Copied {name} to clipboard')
 
     @log_func_call
     def copyIconPyRandyOSCode(self):
@@ -130,6 +132,7 @@ class MainWindow(GuiWindow[MainWindowView]):
 
         clipboard = self.qt_app.clipboard()
         clipboard.setText(code)
+        log_info(f'Copied {iconstring} PyRandyOS code to clipboard')
 
     @log_func_call
     def updateNameField(self, selected: QItemSelection = None,
