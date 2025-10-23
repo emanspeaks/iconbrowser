@@ -1,6 +1,6 @@
 from os import environ
 
-from pyapp._testing import _is_running_in_ci, _is_pyapp_unittest  # noqa: F401
+from pyrandyos._testing import _is_running_in_ci, _is_pyrandyos_unittest  # noqa: F401, E501
 
 # these constants are only relevant to testing, do not add to constants
 ENV_ICONBROWSER_UNITTEST_ACTIVE = 'ICONBROWSER_UNITTEST_ACTIVE'

@@ -22,7 +22,8 @@
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true,
 			"**/.conda": true,
-		}
+		},
+		"python.useEnvironmentsExtension": true,
   },
 	"launch": {
 		"version": "0.2.0",
