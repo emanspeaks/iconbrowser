@@ -155,7 +155,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         self.filterTimer.start()
 
     @log_func_call(DEBUGLOW2, trace_only=True)
-    def filter_text_changed(self):
+    def filter_text_changed(self, text: str):
         self.style_placeholder_text()
         self.triggerDelayedUpdate()
 
