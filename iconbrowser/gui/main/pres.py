@@ -65,7 +65,7 @@ class MainWindow(GuiWindow[MainWindowView]):
         return THIRDPARTY_FONTSPEC.keys()
 
     @log_func_call(DEBUGLOW2, trace_only=True)
-    def triggerImmediateUpdate(self):
+    def triggerImmediateUpdate(self, index: int = None):
         """
         Stop the timer used for committing the search term and update the
         proxy model immediately.
